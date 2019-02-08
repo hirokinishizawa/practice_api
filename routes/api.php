@@ -18,6 +18,8 @@ Route::post('login', 'AuthController@login')->name('login');
 Route::post('logout', 'AuthController@logout')->name('logout');
 
 Route::group(['middleware' => ['auth:api']], function () {
-    Route::get('/me', 'User\UserController@me');
-    Route::get('/user', 'User\UserController@user');
+    Route::group(['namespace' => 'User'], function () {
+        Route::get('/me', 'User\UserController@me');
+        Route::get('/user', 'User\UserController@user');
+    });
 });
