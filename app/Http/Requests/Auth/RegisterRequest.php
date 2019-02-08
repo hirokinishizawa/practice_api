@@ -24,10 +24,10 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         $rule = [
-            'name' => [
+            'name'     => [
                 'required'
             ],
-            'email' => [
+            'email'    => [
                 'required|unique:users,email|email'
             ],
             'password' => [
@@ -41,11 +41,11 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => '名前は必須です。',
-            'email.required' => 'メールアドレスは必須です。',
-            'email.email' => 'メールアドレスを正しい形式にしてください。',
+            'name.required'      => '名前は必須です。',
+            'email.required'     => 'メールアドレスは必須です。',
+            'email.email'        => 'メールアドレスを正しい形式にしてください。',
             'email.unique:users' => 'すでに登録されているアドレスです。',
-            'password.required' => 'パスワードは必須です。'
+            'password.required'  => 'パスワードは必須です。'
         ];
     }
 }
