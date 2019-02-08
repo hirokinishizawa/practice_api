@@ -1,5 +1,15 @@
 <?php
 
+if (env('APP_ENV') === 'production'){
+    return [
+        'supportsCredentials' => false,
+        'allowedOrigins' => ['https://hiroki-practice.com'],
+        'allowedHeaders' => ['*'],
+        'allowedMethods' => ['*'],
+        'exposedHeaders' => [],
+        'maxAge' => 0,
+    ];}
+
 return [
 
     /*
@@ -14,7 +24,6 @@ return [
    
     'supportsCredentials' => false,
     'allowedOrigins' => ['*'],
-    'allowedOriginsPatterns' => [],
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['*'],
     'exposedHeaders' => [],
