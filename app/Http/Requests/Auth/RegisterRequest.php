@@ -23,19 +23,11 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
-        $rule = [
-            'name'     => [
-                'required'
-            ],
-            'email'    => [
-                'required|unique:users,email|email'
-            ],
-            'password' => [
-                'required'
-            ]
+        return [
+            'name'     => 'required',
+            'email'    => 'required|email|unique:users',
+            'password' => 'required'
         ];
-
-        return $rule;
     }
 
     public function messages()

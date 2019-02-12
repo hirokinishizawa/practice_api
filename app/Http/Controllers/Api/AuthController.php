@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Entities\User;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,9 +10,16 @@ use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
 {
-    public function register(RegisterRequest $request, UserRepository $repository)
+    private $repository;
+
+    public function __construct(UserRepository $repository)
     {
-        $user = $repository->create([
+        $this->repository = $repository;
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        $user = $this->repository->create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password)
