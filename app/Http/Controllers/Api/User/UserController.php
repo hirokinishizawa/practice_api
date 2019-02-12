@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Resources\UserResource;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -14,9 +15,9 @@ class UserController extends Controller
         return new UserResource($request->user());
     }
 
-    public function user()
+    public function user(UserRepository $repository)
     {
-        $users = DB::table('users')->get();
+        $users = $repository->all();
 
         return view('user.index', ['users' => $users]);
     }
